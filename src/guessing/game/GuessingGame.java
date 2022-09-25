@@ -28,20 +28,27 @@ public class GuessingGame {
 		Random random = new Random();
 		theRandomNumber = random.nextInt(100) + 1;		//To get a result from the required range
 		
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Pick a number between 1 and 100:");
 		theUserGuess = input.nextInt();
 		
 		//Error message outside of range so it doesn't count as a "try"
-		while (theUserGuess < 1 || theUserGuess > 100) {
-			
-			System.out.println("Your guess is not between 1 and 100, please try again:");
-			theUserGuess = input.nextInt();
-		}
-		
+//		while (theUserGuess < 1 || theUserGuess > 100) {
+//			
+//			System.out.println("Your guess is not between 1 and 100, please try again:");
+//			theUserGuess = input.nextInt();
+//		}
+//		
 		//For loop, 5 iterations max + if statement. Use break; to jump out of the loop
 		for (i = 1; i <= tries; i++) {
+			
+			//While loop doesn't count invalid range as a guess when placed in the first spot as it does when placed last without the commented out while loop
+			while (theUserGuess < 1 || theUserGuess > 100) {
+				System.out.println("Your guess is not between 1 and 100, please try again:");
+				theUserGuess = input.nextInt();
+			}
 			
 			if (theUserGuess == theRandomNumber) {
 				System.out.println("You win!");
@@ -63,6 +70,8 @@ public class GuessingGame {
 				System.out.println("You lose, the number to guess was: " + theRandomNumber);
 			}
 		}
+		
+		input.close();
 		
 	 }
 }
