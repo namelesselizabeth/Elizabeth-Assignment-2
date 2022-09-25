@@ -44,7 +44,7 @@ public class GuessingGame {
 		//For loop, 5 iterations max + if statement. Use break; to jump out of the loop
 		for (i = 1; i <= tries; i++) {
 			
-			//While loop doesn't count invalid range as a guess when placed in the first spot as it does when placed last without the commented out while loop
+			//While loop moved inside for loop, placed first to weed out invalid input & not increment tries
 			while (theUserGuess < 1 || theUserGuess > 100) {
 				System.out.println("Your guess is not between 1 and 100, please try again:");
 				theUserGuess = input.nextInt();
@@ -71,7 +71,6 @@ public class GuessingGame {
 			}
 		}
 		
-		input.close();
-		
+		input.close();		
 	 }
 }
